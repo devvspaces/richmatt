@@ -1,0 +1,89 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="store-nav">
+  <div class="container-fluid fixed-container">
+    <h1>Manage Store</h1>
+    <p style="font-weight: bolder;">Products ({{ queryset_count }})</p>
+
+    <form class="form-filter justify-content-center">
+     <div class="form-box">
+        <label>Category</label>
+        {{ form.category }}
+      </div>
+      <div class="form-box">
+        <label>Min price</label>
+        <div class="input-group">
+          {{ form.min_price }}
+          <span class="input-group-text">N</span>
+        </div>
+      </div>
+      <div class="form-box">
+        <label>Max price</label>
+        <div class="input-group">
+          {{ form.max_price }}
+          <span class="input-group-text">N</span>
+        </div>
+      </div>
+      <button type="submit" name="submit" value="filter" class="sbtn">Filter</button>
+      
+    </form>
+    {% if page_obj == '' %}
+      <a class="removeFilter" href="{% url 'manage_gallery' %}">Remove filter</a>
+    {% endif %}
+  </div>
+</section>
+
+
+<section id="gallery">
+  <div class="container-fluid fixed-container">
+    <table class="table table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Old price</th>
+        <th>New price</th>
+        <th><a href="{% url 'add_product' %}" class="btn btn-outline-primary addItem">Add Product</a></th>
+      </thead>
+      <tbody>
+        {% for i in products %}
+          <tr>
+            <td><a href="{% url 'update_product' i.id %}">{{ i.name }}</a></td>
+            <td>{{ i.get_category_display }}</td>
+            <td>N{{ i.old_price }}</td>
+            <td>N{{ i.new_price }}</td>
+            <td>
+              <div class="actions">
+                <a href="{% url 'delete_product' i.id %}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="container-fluid fixed-container">
+    <div class="pagination">
+      {% if page_obj.has_previous %}
+          <a href="?page=1">First</a>
+          <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+      {% endif%}
+      {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+              <a href="?page={{ num }}" class="active">{{ num }}</a>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+              <a href="?page={{ num }}">{{ num }}</a>
+          {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">Next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif%}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block content %}
+    <section id="gallery-nav">
+      <div class="container-fluid fixed-container">
+        <h1>Fashion Designs</h1>
+        <p>Categories</p>
+        <ul class="box">
+          <li class="active" data-filter='all'>All</li>
+          {% for i in categories %}
+            <li data-filter='{{i.tag}}'>{{i.name}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+
+    <section id="gallery">
+      <div class="container-fluid fixed-container">
+        <div class="gallery-images">
+          {% for image in gallery %}
+            <div href='{{ image.picture.url }}' class="gallery-box {{ image.category }}">
+              <img src="{{ image.picture.url }}" alt="{{ image.caption }}">
+              <div class="contact-box">
+                <a href="#" class="sbtn">Get this</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+{% endblock %}

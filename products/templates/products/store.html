@@ -1,0 +1,79 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="store-nav">
+  <div class="container-fluid fixed-container">
+    <h1>Our store</h1>
+    <!-- <p>Filter</p> -->
+    <form class="form-filter">
+      <div class="form-box">
+        <label>Category</label>
+        {{ form.category }}
+      </div>
+      <div class="form-box">
+        <label>Min price</label>
+        <div class="input-group">
+          {{ form.min_price }}
+          <span class="input-group-text">N</span>
+        </div>
+      </div>
+      <div class="form-box">
+        <label>Max price</label>
+        <div class="input-group">
+          {{ form.max_price }}
+          <span class="input-group-text">N</span>
+        </div>
+      </div>
+      <button type="submit" name="submit" value="filter" href="#" class="sbtn">Filter</button>
+    </form>
+    {% if page_obj == '' %}
+      <a class="removeFilter" href="{% url 'products' %}">Remove filter</a>
+    {% endif %}
+  </div>
+</section>
+
+
+<section class="products">
+  <div class="container-fluid fixed-container">
+    <h3>Products ({{ queryset_count }})</h3>
+    <div class="product-list justify-content-start">
+      {% for product in products %}
+        <div href='{{ product.picture.url }}' class="product-box">
+          <img src="{{ product.picture.url }}">
+          <div class="product-details">
+            <p>{{ product.name.capitalize }}</p>
+            <p>{{ product.get_category_display.capitalize }}</p>
+            <span class="before">N{{ product.old_price }}</span>
+            <span class="new">N{{ product.new_price }}</span>
+            <a href="#" class="sbtn outline">Buy</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="container-fluid fixed-container">
+    <div class="pagination">
+      {% if page_obj.has_previous %}
+          <a href="?page=1">First</a>
+          <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+      {% endif%}
+      {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+              <a href="?page={{ num }}" class="active">{{ num }}</a>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+              <a href="?page={{ num }}">{{ num }}</a>
+          {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">Next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif%}
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,74 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="store-nav">
+  <div class="container-fluid fixed-container">
+    <h1>Manage Gallery</h1>
+    <p style="font-weight: bolder;">Gallery Items ({{ queryset_count }})</p>
+
+    <form class="form-filter justify-content-center">
+      <div class="form-box">
+        <label>Category</label>
+        {{ form.category }}
+      </div>
+      <button type="submit" name="submit" value="filter" class="sbtn">Filter</button>
+      
+    </form>
+    {% if page_obj == '' %}
+      <a class="removeFilter" href="{% url 'manage_gallery' %}">Remove filter</a>
+    {% endif %}
+  </div>
+</section>
+
+
+<section id="gallery">
+  <div class="container-fluid fixed-container">
+    <table class="table table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Created</th>
+        <th><a href="{% url 'add_gallery' %}" class="btn btn-outline-primary addItem">Add Image</a></th>
+      </thead>
+      <tbody>
+        {% for i in gallery %}
+          <tr>
+            <td><a href="{% url 'update_gallery' i.id %}">{{ i.name_short }}</a></td>
+            <td>{{ i.get_category_display }}</td>
+            <td>{{ i.created }}</td>
+            <td>
+              <div class="actions">
+                <a href="{{ i.picture.url }}" class="text-muted" target="_blank"><i class="fas fa-eye"></i></a>
+                <a href="{% url 'delete_gallery' i.id %}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="container-fluid fixed-container">
+    <div class="pagination">
+      {% if page_obj.has_previous %}
+          <a href="?page=1">First</a>
+          <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+      {% endif%}
+      {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+              <a href="?page={{ num }}" class="active">{{ num }}</a>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+              <a href="?page={{ num }}">{{ num }}</a>
+          {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">Next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif%}
+    </div>
+  </div>
+</section>
+{% endblock %}

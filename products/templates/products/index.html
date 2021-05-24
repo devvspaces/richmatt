@@ -1,0 +1,206 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="hero">
+  <div class="container-fluid fixed-container">
+    <div class="headings">
+      <p>Spring / Summer Collection 2017</p>
+      <h1>Get up to 30% off New Arrivals</h1>
+      <a href="{% url 'products' %}" class="sbtn">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<section id="category">
+  <div class="container-fluid fixed-container">
+    <div class="category-list">
+      <div class="category-box one">
+        <img src="{% static 'images/category1.jpg' %}">
+        <a href="{% url 'products' %}?category=men&submit=filter" class="sbtn">Men</a>
+      </div>
+      <div class="category-box two">
+        <img src="{% static 'images/cloth6.jpg' %}">
+        <a href="{% url 'products' %}?category=women&submit=filter" class="sbtn">Women</a>
+      </div>
+      <div class="category-box three">
+        <img src="{% static 'images/category3.jpg' %}">
+        <a href="{% url 'products' %}?category=boys&submit=filter" class="sbtn">Children</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="sector">
+  <div class="container-fluid fixed-container">
+    <div class="flexed">
+      <div class="text-mode">
+        <h2>Buy Elevated Clothes</h2>
+        <p>We sell authentic materials for Men, Women and Children. Any kind of design is available, from English Wears to African Wears, we've got it covered - the foundation of every wardrobe</p>
+        <a href="#" class="sbtn outline">Buy</a>
+      </div>
+      <img src="{% static 'images/african2.jpg' %}">
+    </div>
+  </div>
+</section>
+
+
+<section class="products">
+  <div class="container-fluid fixed-container">
+    <h3>Top selling products</h3>
+    <div class="product-list">
+      <div class="product-box">
+        <img src="{% static 'images/african1.jpg' %}">
+        <div class="product-details">
+          <p>Ankara Cloth</p>
+          <span class="before">N3,000</span>
+          <span class="new">N2,500</span>
+          <a href="#" class="sbtn outline">Buy</a>
+        </div>
+      </div>
+      <div class="product-box">
+        <img src="{% static 'images/ankara3.jpg' %}">
+        <div class="product-details">
+          <p>Ankara Cloth</p>
+          <span class="before">N3,000</span>
+          <span class="new">N2,500</span>
+          <a href="#" class="sbtn outline">Buy</a>
+        </div>
+      </div>
+      <div class="product-box">
+        <img src="{% static 'images/african1.jpg' %}">
+        <div class="product-details">
+          <p>Ankara Cloth</p>
+          <span class="before">N3,000</span>
+          <span class="new">N2,500</span>
+          <a href="#" class="sbtn outline">Buy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="sector">
+  <div class="container-fluid fixed-container">
+    <div class="flexed">
+      <img src="{% static 'images/african2.jpg' %}">
+      <div class="text-mode">
+        <h2>Tailored Designs</h2>
+        <p>Do you want a unique African design, that design and that? We can tailor it for you, from Family Size Package, to Couples design, to Occasional designs, we can sew it and get it delivered to you nicely.</p>
+        <div class="d-flex align-items-center justify-content-center">
+          <a href="{% url 'gallery' %}" class="sbtn outline" style="border-right: none;">Our Designs</a>
+          <a href="#contact" class="sbtn outline">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="works">
+  <div class="container-fluid py-5 fixed-container">
+    <h2>How it works</h2>
+    <div class="control">
+      <button class="active" box='buy'>Buy a cloth</button>
+      <button box='sew'>Sew a design</button>
+    </div>
+    <div class="sliding-container">
+      <div id="buy" class="row sliding active">
+        <div class="col-8 col-sm-5 col-md-4 col-lg-3">
+          <div class="step-box">
+            <h3 class="label">1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.</p>
+          </div>
+        </div>
+        <div class="col-8 col-sm-5 col-md-4 col-lg-3">
+          <div class="step-box">
+            <h3 class="label">2</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.</p>
+          </div>
+        </div>
+        <div class="col-8 col-sm-5 col-md-4 col-lg-3">
+          <div class="step-box">
+            <h3 class="label">3</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.</p>
+          </div>
+        </div>
+      </div>
+      <div id="sew" class="row sliding">
+        <div class="col-8 col-sm-5 col-md-4 col-lg-3">
+          <div class="step-box">
+            <h3 class="label">1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.</p>
+          </div>
+        </div>
+        <div class="col-8 col-sm-5 col-md-4 col-lg-3">
+          <div class="step-box">
+            <h3 class="label">2</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.</p>
+          </div>
+        </div>
+        <div class="col-8 col-sm-5 col-md-4 col-lg-3">
+          <div class="step-box">
+            <h3 class="label">3</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="sbtn">Buy a cloth</a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container-fluid py-5 fixed-container">
+    <div class="row justify-content-center">
+      <div class="col-9 col-sm-5 col-md-5 col-lg-5 mx-2">
+        <div class="contact-card">
+          <img src="{% static 'images/woman.jpg' %}">
+          <p class="name">Ayanwola Rachael</p>
+          <h6>CEO</h6>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.</p>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-7 col-sm-6 col-md-5 col-lg-5 mx-2 we_are">
+        <h3>We are ...</h3>
+        <ul>
+          <li><span><i class="fas fa-check"></i></span>reliable</li>
+          <li><span><i class="fas fa-check"></i></span>expert cloth vendors</li>
+          <li><span><i class="fas fa-check"></i></span>professional fashion designers</li>
+          <li><span><i class="fas fa-check"></i></span>punctual and neat</li>
+          <li><span><i class="fas fa-check"></i></span>always available for delivery</li>
+          <li><span><i class="fas fa-check"></i></span>creative designers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
